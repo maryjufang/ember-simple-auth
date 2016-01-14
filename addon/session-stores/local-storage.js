@@ -58,7 +58,10 @@ export default BaseStore.extend({
   */
   restore() {
     let data = localStorage.getItem(this.key);
-    return RSVP.resolve(JSON.parse(data) || {});
+    if (data) {
+      return RSVP.resolve(JSON.parse(data));
+    }
+    return RSVP.resolve({});
   },
 
   /**
